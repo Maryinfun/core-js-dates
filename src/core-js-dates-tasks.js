@@ -127,8 +127,11 @@ function getCountDaysOnPeriod(/* dateStart, dateEnd */) {
  * '2024-02-02', { start: '2024-02-02', end: '2024-03-02' } => true
  * '2024-02-10', { start: '2024-02-02', end: '2024-03-02' } => true
  */
-function isDateInPeriod(/* date, period */) {
-  throw new Error('Not implemented');
+function isDateInPeriod(date, period) {
+  const startPeriod = new Date(period.start);
+  const endPeriod = new Date(period.end);
+  const dateForChecking = new Date(date);
+  return startPeriod <= dateForChecking && dateForChecking <= endPeriod;
 }
 
 /**
@@ -203,8 +206,18 @@ function getNextFridayThe13th(/* date */) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(/* date */) {
-  throw new Error('Not implemented');
+function getQuarter(date) {
+  const month = date.getMonth();
+  switch (true) {
+    case month < 3:
+      return 1;
+    case month < 7:
+      return 2;
+    case month < 10:
+      return 3;
+    default:
+      return 4;
+  }
 }
 
 /**
